@@ -14,13 +14,59 @@ body {
   color: #34ff78;
 }
 
+.shelf-container {
+  border: 1px solid #2f754f;
+  background-color: #2f754fcc;
+  margin: 50px auto;
+  width: 1000px;
+  height: 550px;
+  border-radius: 2px;
+}
+
+.shelf-header {
+  font-size: 48px;
+  text-align: center;
+  margin-top: 15px;
+  border-bottom: 1px solid #00cf5d;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  text-align: center;
+}
+th,
+td {
+  border-bottom: 1px solid #00cf5d;
+  padding: 10px 15px;
+}
+thead {
+  background: #2f754f;
+  color: #00cf5d;
+}
+tbody tr td:first-child {
+  width: 40%;
+}
+td {
+  border-bottom: 1px solid #00cf5d;
+  border-right: 1px solid #00cf5d;
+}
+td:first-child {
+  border-left: 1px solid #00cf5d;
+}
+
+
+
 .form-popup {
   position: fixed;
   left: 40%;
+  top: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 26px;
+  display: none;
 }
 
 form li + li {
@@ -30,9 +76,9 @@ form li + li {
 }
 
 .form-container {
-  border: 1px solid #10a352;
+  border: 1px solid #00cf5d;
   border-radius: 12px;
-  background-color: #10a352;
+  background-color: #00cf5d;
   width: 330px;
   height: 470px;
   padding: 20px;
@@ -65,8 +111,8 @@ form li + li {
   top: 15px;
   right: 20px;
   font-size: 26px;
-  background-color: #10a352;
-  border: 1px solid #10a352;
+  background-color: #00cf5d;
+  border: 1px solid #00cf5d;
   width: 40px;
   height: 40px;
 }
@@ -75,7 +121,7 @@ form li + li {
   color: white;
 }
 
-.add-button {
+.add-button, .new-button {
   height: 45px;
   width: 120px;
   margin: 0 auto;
@@ -87,9 +133,10 @@ form li + li {
   display: flex;
   justify-content: center;
   align-items: center;
+  outline: none;
 }
 
-.add-button:hover {
+.add-button:hover, .new-button:hover {
   transform: scale(1.1);
   border-color: #6ffa6a;
   box-shadow: 0 0 10px #6ffa6a;
