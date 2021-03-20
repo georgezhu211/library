@@ -45,9 +45,6 @@ thead {
   background: #2f754f;
   color: #00cf5d;
 }
-tbody tr td:first-child {
-  width: 40%;
-}
 td {
   border-bottom: 1px solid #00cf5d;
   border-right: 1px solid #00cf5d;
@@ -55,7 +52,9 @@ td {
 td:first-child {
   border-left: 1px solid #00cf5d;
 }
-
+th:first-child {
+  width: 40%;
+}
 
 
 .form-popup {
@@ -140,4 +139,17 @@ form li + li {
   transform: scale(1.1);
   border-color: #6ffa6a;
   box-shadow: 0 0 10px #6ffa6a;
+}
+
+.remove-button {
+  padding: 0 3px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background-color: #cf1818;
+  font-size: 18px;
+}
+
+.remove-button:hover {
+  transform: scale(1.1);
 }

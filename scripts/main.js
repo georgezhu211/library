@@ -7,8 +7,8 @@ function Book(title, author, pages, read) {
   this.read = read
 }
 
-Book.prototype.info = function() {
-  return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+Book.prototype.remove = function() {
+
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -17,7 +17,6 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayAllBooks() {
-
   let bookshelf = document.getElementById('bookshelf')
   bookshelf.innerHTML = '';
   for(let i=0; i<myLibrary.length; i++) {
@@ -26,8 +25,18 @@ function displayAllBooks() {
     book.insertCell(1).innerHTML = myLibrary[i].author
     book.insertCell(2).innerHTML = myLibrary[i].pages
     book.insertCell(3).innerHTML = myLibrary[i].read
+    book.insertCell(4).appendChild(createButton(i))
   }
+  remove()
 }
+
+function createButton(index) {
+  let button = document.createElement('BUTTON')
+  button.className = 'remove-button'
+  button.innerHTML = '&#10005'
+  button.setAttribute('data-index', `${index}`)
+  return button
+} 
 
 function cleanForm() {
   formPopup.style.display = 'none'
@@ -37,10 +46,18 @@ function cleanForm() {
   })
 }
 
+addBookToLibrary('book1', 'asdf', 123, '123')
+addBookToLibrary('book2', 'asdf', 123, '123')
+addBookToLibrary('book3', 'asdf', 123, '123')
+displayAllBooks()
+
+
 const newBtn = document.querySelector('.new-button')
 const closeBtn = document.querySelector('.close-button')
 const addBtn = document.querySelector('.add-button')
 const formPopup = document.querySelector('.form-popup')
+
+
 
 newBtn.addEventListener('click', () => {
   formPopup.style.display = 'block'
@@ -57,3 +74,19 @@ addBtn.addEventListener('click', () => {
   displayAllBooks()
   cleanForm()
 })
+
+function remove() {
+  const removeBtns = document.querySelectorAll('.remove-button')
+  
+  removeBtns.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      let index = e.target.dataset.index
+      if(index >= myLibrary.length) {
+        return
+      }
+      myLibrary.splice(Number(index), 1);
+      console.log(myLibrary)
+      displayAllBooks()
+    })
+  })
+}
