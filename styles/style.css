@@ -1,0 +1,96 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/wanshitongslibrary.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color: #afe8ff;
+}
+
+.header {
+  padding: 50px 0;
+  font-size: 96px;
+  text-align: center;
+  color: #34ff78;
+}
+
+.form-popup {
+  position: fixed;
+  left: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+}
+
+form li + li {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  border: 1px solid #10a352;
+  border-radius: 12px;
+  background-color: #10a352;
+  width: 330px;
+  height: 470px;
+  padding: 20px;
+  position: relative;
+}
+
+.form-title {
+  text-align: center;
+  margin: 12px 0;
+}
+
+.input-box {
+  width: 95%;
+  height: 31px;
+  font-size: 18px;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #cecece;
+  padding-left: 7px;
+  margin-top: 8px;
+}
+
+.input-box:focus {
+  border-color: #6ffa6a;
+  box-shadow: 0 0 10px #6ffa6a;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 26px;
+  background-color: #10a352;
+  border: 1px solid #10a352;
+  width: 40px;
+  height: 40px;
+}
+
+.close-button:hover {
+  color: white;
+}
+
+.add-button {
+  height: 45px;
+  width: 120px;
+  margin: 0 auto;
+  border: 1px solid #6ffa6a;
+  background-color: #6ffa6a;
+  border-radius: 3px;
+  font-size: 16px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-button:hover {
+  transform: scale(1.1);
+  border-color: #6ffa6a;
+  box-shadow: 0 0 10px #6ffa6a;
+}
