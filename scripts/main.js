@@ -5,10 +5,17 @@ function Book(title, author, pages, read) {
   this.author = author
   this.pages = pages
   this.read = read
+  this.readStatus = false
 }
 
-Book.prototype.remove = function() {
-
+Book.prototype.toggleRead = function() {
+  if(this.readStatus == false) {
+    this.read = 'not yet read'
+    this.readStatus = true
+  } else {
+    this.read = 'completed'
+    this.readStatus = false
+  }
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -25,18 +32,29 @@ function displayAllBooks() {
     book.insertCell(1).innerHTML = myLibrary[i].author
     book.insertCell(2).innerHTML = myLibrary[i].pages
     book.insertCell(3).innerHTML = myLibrary[i].read
-    book.insertCell(4).appendChild(createButton(i))
+    let options = book.insertCell(4)
+    options.appendChild(createRemoveBtn(i))
+    options.appendChild(createReadBtn(i))
   }
-  remove()
+  addRemoveButtons()
+  addReadButtons()
 }
 
-function createButton(index) {
+function createRemoveBtn(index) {
   let button = document.createElement('BUTTON')
   button.className = 'remove-button'
   button.innerHTML = '&#10005'
   button.setAttribute('data-index', `${index}`)
   return button
 } 
+
+function createReadBtn(index) {
+  let button = document.createElement('BUTTON')
+  button.className =  'read-button'
+  button.innerHTML = 'R'
+  button.setAttribute('data-index', `${index}`)
+  return button
+}
 
 function cleanForm() {
   formPopup.style.display = 'none'
@@ -75,7 +93,7 @@ addBtn.addEventListener('click', () => {
   cleanForm()
 })
 
-function remove() {
+function addRemoveButtons() {
   const removeBtns = document.querySelectorAll('.remove-button')
   
   removeBtns.forEach((button) => {
@@ -84,8 +102,19 @@ function remove() {
       if(index >= myLibrary.length) {
         return
       }
-      myLibrary.splice(Number(index), 1);
-      console.log(myLibrary)
+      myLibrary.splice(Number(index), 1)
+      displayAllBooks()
+    })
+  })
+}
+
+function addReadButtons() {
+  const readBtns = document.querySelectorAll('.read-button')
+
+  readBtns.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      let index = e.target.dataset.index
+      myLibrary[index].toggleRead()
       displayAllBooks()
     })
   })
