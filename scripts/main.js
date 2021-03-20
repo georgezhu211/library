@@ -17,7 +17,9 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayAllBooks() {
+
   let bookshelf = document.getElementById('bookshelf')
+  bookshelf.innerHTML = '';
   for(let i=0; i<myLibrary.length; i++) {
     let book = bookshelf.insertRow(-1)
     book.insertCell(0).innerHTML = myLibrary[i].title
@@ -27,26 +29,31 @@ function displayAllBooks() {
   }
 }
 
-
-addBookToLibrary('Book1', 'author1', 123, 'read')
-addBookToLibrary('Book2', 'author2', 123, 'not read')
-addBookToLibrary('Book3', 'author3', 123, 'read')
-
-displayAllBooks()
+function cleanForm() {
+  formPopup.style.display = 'none'
+  let inputs = document.querySelectorAll('input')
+  inputs.forEach((e) => {
+    e.value = ''
+  })
+}
 
 const newBtn = document.querySelector('.new-button')
 const closeBtn = document.querySelector('.close-button')
 const addBtn = document.querySelector('.add-button')
-const form = document.querySelector('.form-popup')
+const formPopup = document.querySelector('.form-popup')
 
 newBtn.addEventListener('click', () => {
-  form.style.display = 'block'
+  formPopup.style.display = 'block'
 })
 
-closeBtn.addEventListener('click', () => {
-  form.style.display = 'none'
-})
+closeBtn.addEventListener('click', cleanForm)
 
 addBtn.addEventListener('click', () => {
-
+  let title = document.querySelector("input[name='title']").value
+  let author = document.querySelector("input[name='author']").value
+  let pages = document.querySelector("input[name='pages']").value
+  let read = document.querySelector("input[name='read']").value
+  addBookToLibrary(title, author, pages, read)
+  displayAllBooks()
+  cleanForm()
 })
