@@ -8,7 +8,8 @@
   <title>Library</title>
 </head>
 <body>
-  <h1 class="header">Wan Shi Tong's Library</h1>
+  <h1 class="header">萬知堂神祕圖書館</h1>
+  <h2 class="sub-header">Wan Shi Tong's Spirit Library</h1>
   <div class="shelf-container">
     <h2 class="shelf-header">Books</h2>
     <table class="book-shelf">
@@ -28,7 +29,7 @@
   </div>
   <div class="form-popup">
     <form autocomplete="off" class="form-container">
-      <button class="close-button" type="button">&#10005</button>
+      <button class="close-button">&#10005</button>
       <ul>
         <li>
           <h2 class="form-title">ADD NEW BOOK</h1>
@@ -50,7 +51,7 @@
           <input class="input-box" type="text" placeholder="Read" name="read" required>
         </li>
         <li>
-          <button class="add-button" type="button">ADD BOOK</button>
+          <button class="add-button">ADD BOOK</button>
         </li>
       </ul>
     </form>
@@ -58,5 +59,15 @@
   <button class="new-button">NEW BOOK</button>
 
   <script src="scripts/main.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="/__/firebase/8.3.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="/__/firebase/8.3.1/firebase-analytics.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
 </body>
 </html>

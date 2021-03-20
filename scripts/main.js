@@ -72,8 +72,8 @@ displayAllBooks()
 
 const newBtn = document.querySelector('.new-button')
 const closeBtn = document.querySelector('.close-button')
-const addBtn = document.querySelector('.add-button')
 const formPopup = document.querySelector('.form-popup')
+const form = document.querySelector('.form-container')
 
 
 
@@ -83,7 +83,8 @@ newBtn.addEventListener('click', () => {
 
 closeBtn.addEventListener('click', cleanForm)
 
-addBtn.addEventListener('click', () => {
+form.addEventListener('submit', function(e) {
+  e.preventDefault()
   let title = document.querySelector("input[name='title']").value
   let author = document.querySelector("input[name='author']").value
   let pages = document.querySelector("input[name='pages']").value

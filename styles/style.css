@@ -7,11 +7,15 @@ body {
   color: #afe8ff;
 }
 
-.header {
-  padding: 50px 0;
+.header, .sub-header {
+  padding-top: 25px;
   font-size: 96px;
   text-align: center;
   color: #34ff78;
+}
+
+.sub-header {
+  font-size: 35px;
 }
 
 .shelf-container {
@@ -79,7 +83,7 @@ form li + li {
   border: 1px solid #00cf5d;
   border-radius: 12px;
   background-color: #00cf5d;
-  width: 500px;
+  width: 350px;
   height: 470px;
   padding: 20px;
   position: relative;
