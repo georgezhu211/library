@@ -2,72 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/style.css">
   <title>Library</title>
 </head>
 <body>
-  <h1 class="header">萬知堂神祕圖書館</h1>
+  <div class="background">
+    <div class="container">
+      <h1 class="header">萬知堂神祕圖書館</h1>
+      <h2 class="sub-header">Wan Shi Tong's Spirit Library</h2>
+      <button class="form-button">Donate Book</button>
+      <!-- Table -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Author</th>
+              <th scope="col">Pages</th>
+              <th scope="col">Read</th>
+            </tr>
+          </thead>
+          <tbody class="bookshelf">
+          </tbody>
+        </table>
+      </div>
+      <!-- Form and Button -->
+      <div class="form-popup">
+        <form autocomplete="off" class="form-container" id="book-form">
+          <button type="button" class="close-button">&#10005</button>
+          <ul>
+            <li>
+              <h2 class="form-title">ADD NEW BOOK</h1>
+            </li>
+            <li>
+              <label for="title">Title:</label>
+              <input class="input-box" type="text" placeholder="Title" name="title" required>
+            </li>
+            <li>
+              <label for="author">Author:</label>
+              <input class="input-box" type="text" placeholder="Author" name="author" required>
+            </li>
+            <li>
+              <label for="pages">Page Numbers:</label>
+              <input class="input-box" type="text" placeholder="Pages" name="pages" required>
+            </li>
+            <li>
+              <label for="read">Read Status:</label>
+              <input class="input-box" type="text" placeholder="Read" name="read" required>
+            </li>
+            <li>
+              <button class="add-button">ADD BOOK</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- <h1 class="header">萬知堂神祕圖書館</h1>
   <h2 class="sub-header">Wan Shi Tong's Spirit Library</h1>
-  <div class="shelf-container">
-    <h2 class="shelf-header">Books</h2>
-    <table class="book-shelf">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Pages</th>
-          <th>Read</th>
-          <th>Options</th>
-        </tr>
-      </thead>
-      <tbody id="bookshelf">
 
-      </tbody>
-    </table>
-  </div>
-  <div class="form-popup">
-    <form autocomplete="off" class="form-container">
-      <button class="close-button">&#10005</button>
-      <ul>
-        <li>
-          <h2 class="form-title">ADD NEW BOOK</h1>
-        </li>
-        <li>
-          <label for="title">Title:</label>
-          <input class="input-box" type="text" placeholder="Title" name="title" required>
-        </li>
-        <li>
-          <label for="author">Author:</label>
-          <input class="input-box" type="text" placeholder="Author" name="author" required>
-        </li>
-        <li>
-          <label for="pages">Page Numbers:</label>
-          <input class="input-box" type="text" placeholder="Pages" name="pages" required>
-        </li>
-        <li>
-          <label for="read">Read Status:</label>
-          <input class="input-box" type="text" placeholder="Read" name="read" required>
-        </li>
-        <li>
-          <button class="add-button">ADD BOOK</button>
-        </li>
-      </ul>
-    </form>
-  </div>
-  <button class="new-button">NEW BOOK</button>
+ -->
 
   <script src="scripts/main.js"></script>
-
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="/__/firebase/8.3.1/firebase-app.js"></script>
-
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-      https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="/__/firebase/8.3.1/firebase-analytics.js"></script>
-
-  <!-- Initialize Firebase -->
-  <script src="/__/firebase/init.js"></script>
 </body>
 </html>

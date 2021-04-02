@@ -1,37 +1,41 @@
-body {
-  width: 100vw;
-  height: 100vh;
-  background-image: url("../images/wanshitongslibrary.jpg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  color: #afe8ff;
-}
-
-.header, .sub-header {
-  padding-top: 25px;
-  font-size: 96px;
-  text-align: center;
+body, html {
+  height: 100%;
+  min-width: 960px;
   color: #34ff78;
 }
 
-.sub-header {
-  font-size: 35px;
+.background {
+  background-image: url("../images/wanshitongslibrary.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.shelf-container {
-  border: 1px solid #2f754f;
-  background-color: #2f754fcc;
-  margin: 50px auto;
-  width: 1200px;
-  height: 550px;
-  border-radius: 2px;
+.container {
+  height: 100%;
 }
 
-.shelf-header {
-  font-size: 48px;
+.header, .sub-header {
   text-align: center;
-  margin-top: 15px;
-  border-bottom: 1px solid #00cf5d;
+}
+
+.header {
+  font-size: 80px;
+  padding-top: 30px;
+}
+
+.sub-header {
+  font-size: 24px;
+  padding-bottom: 30px;
+}
+
+.table-container {
+  border: 1px solid #34ff78;
+  width: 900px;
+  height: 700px;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
 table {
@@ -58,9 +62,8 @@ td:first-child {
   border-left: 1px solid #00cf5d;
 }
 th:first-child {
-  width: 40%;
+  width: 50%;
 }
-
 
 .form-popup {
   position: fixed;
@@ -125,7 +128,7 @@ form li + li {
   color: white;
 }
 
-.add-button, .new-button {
+.add-button, .form-button {
   height: 45px;
   width: 120px;
   margin: 0 auto;
@@ -140,7 +143,7 @@ form li + li {
   outline: none;
 }
 
-.add-button:hover, .new-button:hover {
+.add-button:hover, .form-button:hover {
   transform: scale(1.1);
   border-color: #6ffa6a;
   box-shadow: 0 0 10px #6ffa6a;
@@ -167,4 +170,4 @@ form li + li {
 
 .remove-button:hover, .read-button:hover {
   transform: scale(1.1);
-}
+} 

@@ -1,122 +1,84 @@
-let myLibrary = [];
+// Libray Module
+const Library = (() => {
+  const myLibrary = []
 
-function Book(title, author, pages, read) {
-  this.title = title
-  this.author = author
-  this.pages = pages
-  this.read = read
-  this.readStatus = false
-}
+  const add = book => {
+    myLibrary.push(book)
+    DOM.update(book)
+  }
 
-Book.prototype.toggleRead = function() {
-  if(this.readStatus == false) {
-    this.read = 'not yet read'
-    this.readStatus = true
-  } else {
-    this.read = 'completed'
-    this.readStatus = false
+  return {
+    myLibrary,
+    add
+  }
+})();
+// Book Class
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
   }
 }
+// DOM module
+const DOM = (() => {
+  // cache DOM
+  const table = document.querySelector('.bookshelf')
+  const formPopup = document.querySelector('.form-popup')
+  const formBtn = document.querySelector('.form-button')
+  const closeBtn = document.querySelector('.close-button')
+  const bookForm = document.getElementById('book-form')
+  // bind events
+  formBtn.addEventListener('click', openForm)
+  closeBtn.addEventListener('click', closeForm)
+  bookForm.addEventListener('submit', addBook.bind(this))
 
-function addBookToLibrary(title, author, pages, read) {
-  const book = new Book(title, author, pages, read)
-  myLibrary.push(book)
-}
-
-function displayAllBooks() {
-  let bookshelf = document.getElementById('bookshelf')
-  bookshelf.innerHTML = '';
-  for(let i=0; i<myLibrary.length; i++) {
-    let book = bookshelf.insertRow(-1)
-    book.insertCell(0).innerHTML = myLibrary[i].title
-    book.insertCell(1).innerHTML = myLibrary[i].author
-    book.insertCell(2).innerHTML = myLibrary[i].pages
-    book.insertCell(3).innerHTML = myLibrary[i].read
-    let options = book.insertCell(4)
-    options.appendChild(createRemoveBtn(i))
-    options.appendChild(createReadBtn(i))
+  const render = library => {
+    library.forEach(book => update(book))
   }
-  addRemoveButtons()
-  addReadButtons()
-}
 
-function createRemoveBtn(index) {
-  let button = document.createElement('BUTTON')
-  button.className = 'remove-button'
-  button.innerHTML = '&#10005'
-  button.setAttribute('data-index', `${index}`)
-  return button
-} 
+  const update = book => {
+    let row = table.insertRow(-1)
+    for (const property in book) {
+      row.insertCell().textContent = book[property]
+    }
+  }
 
-function createReadBtn(index) {
-  let button = document.createElement('BUTTON')
-  button.className =  'read-button'
-  button.innerHTML = 'R'
-  button.setAttribute('data-index', `${index}`)
-  return button
-}
+  function openForm() {
+    formPopup.style.display = 'block'
+  }
 
-function cleanForm() {
-  formPopup.style.display = 'none'
-  let inputs = document.querySelectorAll('input')
-  inputs.forEach((e) => {
-    e.value = ''
-  })
-}
+  function closeForm() {
+    formPopup.style.display = 'none'
+  }
 
-addBookToLibrary('book1', 'asdf', 123, '123')
-addBookToLibrary('book2', 'asdf', 123, '123')
-addBookToLibrary('book3', 'asdf', 123, '123')
-displayAllBooks()
+  function addBook(e) {
+    e.preventDefault()
+    let title = bookForm.elements.title.value
+    let author = bookForm.elements.author.value
+    let pages = bookForm.elements.pages.value
+    let read = bookForm.elements.read.value
+    let book = new Book(title, author, pages, read)
+    Library.add(book)
+    bookForm.reset()
+    closeForm()
+  }
 
-
-const newBtn = document.querySelector('.new-button')
-const closeBtn = document.querySelector('.close-button')
-const formPopup = document.querySelector('.form-popup')
-const form = document.querySelector('.form-container')
+  return {
+    render,
+    update,
+  }
+})();
 
 
+const manga1 = new Book('naruto', 'kishimoto', 122, true)
+const manga2 = new Book('sao', 'kawahara', 122, true)
+const manga3 = new Book('one piece', 'oda', 122, true)
+const manga4 = new Book('attack on titan', 'idk', 122, true)
 
-newBtn.addEventListener('click', () => {
-  formPopup.style.display = 'block'
-})
+Library.add(manga1)
+Library.add(manga2)
+Library.add(manga3)
 
-closeBtn.addEventListener('click', cleanForm)
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault()
-  let title = document.querySelector("input[name='title']").value
-  let author = document.querySelector("input[name='author']").value
-  let pages = document.querySelector("input[name='pages']").value
-  let read = document.querySelector("input[name='read']").value
-  addBookToLibrary(title, author, pages, read)
-  displayAllBooks()
-  cleanForm()
-})
-
-function addRemoveButtons() {
-  const removeBtns = document.querySelectorAll('.remove-button')
-  
-  removeBtns.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      let index = e.target.dataset.index
-      if(index >= myLibrary.length) {
-        return
-      }
-      myLibrary.splice(Number(index), 1)
-      displayAllBooks()
-    })
-  })
-}
-
-function addReadButtons() {
-  const readBtns = document.querySelectorAll('.read-button')
-
-  readBtns.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      let index = e.target.dataset.index
-      myLibrary[index].toggleRead()
-      displayAllBooks()
-    })
-  })
-}
