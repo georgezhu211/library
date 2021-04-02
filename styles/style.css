@@ -34,7 +34,7 @@ body, html {
 .table-container {
   border: 1px solid #34ff78;
   width: 900px;
-  height: 700px;
+  height: 600px;
   margin: 0 auto;
   margin-top: 20px;
 }
@@ -134,7 +134,7 @@ form li + li {
   color: white;
 }
 
-.add-button, .form-button {
+.add-button, .form-button, .storage-button {
   height: 45px;
   width: 120px;
   margin: 0 auto;
@@ -149,10 +149,32 @@ form li + li {
   color: white;
 }
 
+.storage-button {
+  margin-top: 10px;
+  border-color: red;
+  background-color: red;
+  color: black;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 40px;
+  width: 170px;
+}
+
 .add-button:hover, .form-button:hover {
-  transform: scale(1.1);
-  border-color: #6ffa6a;
   box-shadow: 0 0 10px #6ffa6a;
+}
+
+.storage-button:hover, .remove-button:hover {
+  box-shadow: 0 0 10px #ff5e5e;
+}
+
+button:active{
+  transform: scale(1.05);
+}
+
+.remove-button:active {
+  transform: scale(1.25);
 }
 
 .remove-button, .read-button {
@@ -170,9 +192,9 @@ form li + li {
   background-color: #cf1818;
 }
 
-.remove-button:hover{
-  transform: scale(1.1);
-} 
+.close-button {
+  outline: none;
+}
 
 .read-selector {
   color: white;

@@ -5,6 +5,7 @@ const Library = (() => {
   const add = book => {
     myLibrary.push(book)
     DOM.update(book)
+    storage.update()
   }
 
   return {
@@ -23,19 +24,21 @@ class Book {
 // DOM module
 const DOM = (() => {
   // cache DOM
-  const table = document.querySelector('.bookshelf')
+  const bookshelf = document.querySelector('.bookshelf')
   const formPopup = document.querySelector('.form-popup')
   const formBtn = document.querySelector('.form-button')
   const closeBtn = document.querySelector('.close-button')
   const bookForm = document.getElementById('book-form')
+  const storageBtn = document.querySelector('.storage-button')
 
   // bind events
   formBtn.addEventListener('click', openForm)
   closeBtn.addEventListener('click', closeForm)
   bookForm.addEventListener('submit', addBook.bind(this))
+  storageBtn.addEventListener('click', clearStorage)
 
   const update = book => {
-    let row = table.insertRow(-1)
+    let row = bookshelf.insertRow(-1)
     for (const property in book) {
       row.insertCell().textContent = book[property]
     }
@@ -93,16 +96,52 @@ const DOM = (() => {
     row.insertCell().appendChild(button)
   }
 
+  function clearStorage() {
+    console.log('local storage cleared')
+    localStorage.clear()
+    clear()
+  }
+
+  function clear() {
+    while(bookshelf.firstChild) {
+      bookshelf.removeChild(bookshelf.firstChild)
+    }
+  }
+
   return {
+    update,
+    clear
+  }
+})();
+
+const storage = (() => {
+  function activate() {
+    if(!localStorage['myLibrary']) {
+      update()
+    } else {
+      access()
+    }
+  }
+
+  function update() {
+    console.log('updating local storage')
+    const libraryData = Library.myLibrary
+    localStorage['myLibrary'] = JSON.stringify(libraryData)
+  }
+
+  function access() {
+    console.log('accessing local storage')
+    const libraryData = JSON.parse(localStorage['myLibrary'])
+    for (const key in libraryData) {
+      const book = libraryData[key]
+      Library.add(book)
+    }
+  }
+
+  return {
+    activate,
     update,
   }
 })();
 
-const manga1 = new Book('naruto', 'kishimoto', 122, true)
-const manga2 = new Book('sao', 'kawahara', 122, true)
-const manga3 = new Book('one piece', 'oda', 122, true)
-const manga4 = new Book('attack on titan', 'idk', 122, true)
-
-Library.add(manga1)
-Library.add(manga2)
-Library.add(manga3)
+storage.activate()
