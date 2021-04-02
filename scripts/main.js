@@ -15,10 +15,11 @@ const Library = (() => {
 })();
 // Book Class
 class Book {
-  constructor(title, author, pages) {
+  constructor(title, author, pages, read) {
     this.title = title
     this.author = author
     this.pages = pages
+    this.read = read
   }
 }
 // DOM module
@@ -37,12 +38,12 @@ const DOM = (() => {
   bookForm.addEventListener('submit', addBook.bind(this))
   storageBtn.addEventListener('click', clearStorage)
 
-  const update = book => {
+  function update(book) {
     let row = bookshelf.insertRow(-1)
     for (const property in book) {
       row.insertCell().textContent = book[property]
     }
-    addReadSelect(row)
+    // addReadSelect(row)
     addRemoveBtn(row)
   }
 
@@ -59,7 +60,8 @@ const DOM = (() => {
     let title = bookForm.elements.title.value
     let author = bookForm.elements.author.value
     let pages = bookForm.elements.pages.value
-    let read = bookForm.elements.read.value
+    let readIndex = bookForm.elements.read.selectedIndex
+    let read = bookForm.elements.read.options[readIndex].value
     let book = new Book(title, author, pages, read)
     Library.add(book)
     bookForm.reset()
@@ -73,20 +75,21 @@ const DOM = (() => {
     row.remove()
   }
 
-  function addReadSelect(row) {
-    const select = document.createElement('select')
-    select.className = 'read-selector'
-    const option1 = document.createElement('option')
-    option1.textContent = 'Plan to Read'
-    const option2 = document.createElement('option')
-    option2.textContent = 'Reading'
-    const option3 = document.createElement('option')
-    option3.textContent = 'Completed'
-    select.appendChild(option1)
-    select.appendChild(option2)
-    select.appendChild(option3)
-    row.insertCell().appendChild(select)
-  }
+  // function addReadSelect(row, index) {
+  //   const select = document.createElement('select')
+  //   select.className = 'read-selector'
+  //   const option1 = document.createElement('option')
+  //   option1.textContent = 'Plan to Read'
+  //   const option2 = document.createElement('option')
+  //   option2.textContent = 'Reading'
+  //   const option3 = document.createElement('option')
+  //   option3.textContent = 'Completed'
+  //   select.appendChild(option1)
+  //   select.appendChild(option2)
+  //   select.appendChild(option3)
+  //   select.selectedIndex = index
+  //   row.insertCell().appendChild(select)
+  // }
 
   function addRemoveBtn(row) {
     const button = document.createElement('button')
