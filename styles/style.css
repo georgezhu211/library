@@ -1,7 +1,6 @@
 body, html {
   height: 100%;
   min-width: 960px;
-  color: #34ff78;
 }
 
 .background {
@@ -14,6 +13,8 @@ body, html {
 
 .container {
   height: 100%;
+  color: #34ff78;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .header, .sub-header {
@@ -67,8 +68,9 @@ th:first-child {
 
 .form-popup {
   position: fixed;
-  left: 40%;
-  top: 25%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,6 +92,7 @@ form li + li {
   height: 470px;
   padding: 20px;
   position: relative;
+  color: white;
 }
 
 .form-title {
@@ -136,11 +139,11 @@ form li + li {
   background-color: #6ffa6a;
   border-radius: 3px;
   font-size: 16px;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   outline: none;
+  color: white;
 }
 
 .add-button:hover, .form-button:hover {

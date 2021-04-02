@@ -29,20 +29,18 @@ const DOM = (() => {
   const formBtn = document.querySelector('.form-button')
   const closeBtn = document.querySelector('.close-button')
   const bookForm = document.getElementById('book-form')
+
   // bind events
   formBtn.addEventListener('click', openForm)
   closeBtn.addEventListener('click', closeForm)
   bookForm.addEventListener('submit', addBook.bind(this))
-
-  const render = library => {
-    library.forEach(book => update(book))
-  }
 
   const update = book => {
     let row = table.insertRow(-1)
     for (const property in book) {
       row.insertCell().textContent = book[property]
     }
+    addRemoveBtn(row)
   }
 
   function openForm() {
@@ -65,12 +63,25 @@ const DOM = (() => {
     closeForm()
   }
 
+  function removeBook() {
+    const row = this.parentElement.parentElement
+    const index = row.rowIndex - 1;
+    Library.myLibrary.splice(index, 1)
+    row.remove()
+  }
+
+  function addRemoveBtn(row) {
+    const button = document.createElement('button')
+    button.addEventListener('click', removeBook)
+    button.className = 'remove-button'
+    button.textContent = 'X'
+    row.insertCell().appendChild(button)
+  }
+
   return {
-    render,
     update,
   }
 })();
-
 
 const manga1 = new Book('naruto', 'kishimoto', 122, true)
 const manga2 = new Book('sao', 'kawahara', 122, true)
@@ -80,5 +91,3 @@ const manga4 = new Book('attack on titan', 'idk', 122, true)
 Library.add(manga1)
 Library.add(manga2)
 Library.add(manga3)
-
-
