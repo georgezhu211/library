@@ -14,11 +14,10 @@ const Library = (() => {
 })();
 // Book Class
 class Book {
-  constructor(title, author, pages, read) {
+  constructor(title, author, pages) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.read = read
   }
 }
 // DOM module
@@ -40,6 +39,7 @@ const DOM = (() => {
     for (const property in book) {
       row.insertCell().textContent = book[property]
     }
+    addReadSelect(row)
     addRemoveBtn(row)
   }
 
@@ -68,6 +68,21 @@ const DOM = (() => {
     const index = row.rowIndex - 1;
     Library.myLibrary.splice(index, 1)
     row.remove()
+  }
+
+  function addReadSelect(row) {
+    const select = document.createElement('select')
+    select.className = 'read-selector'
+    const option1 = document.createElement('option')
+    option1.textContent = 'Plan to Read'
+    const option2 = document.createElement('option')
+    option2.textContent = 'Reading'
+    const option3 = document.createElement('option')
+    option3.textContent = 'Completed'
+    select.appendChild(option1)
+    select.appendChild(option2)
+    select.appendChild(option3)
+    row.insertCell().appendChild(select)
   }
 
   function addRemoveBtn(row) {

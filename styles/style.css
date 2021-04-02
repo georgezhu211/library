@@ -63,7 +63,10 @@ td:first-child {
   border-left: 1px solid #00cf5d;
 }
 th:first-child {
-  width: 50%;
+  width: 40%;
+}
+th:last-child {
+  width: 10%;
 }
 
 .form-popup {
@@ -167,10 +170,14 @@ form li + li {
   background-color: #cf1818;
 }
 
-.read-button {
-  background-color: green;
-}
-
-.remove-button:hover, .read-button:hover {
+.remove-button:hover{
   transform: scale(1.1);
 } 
+
+.read-selector {
+  color: white;
+  background-color: #00cf5d;
+  font-size: 13px;
+  outline: none;
+  border: 1px solid #00cf5d;
+}
