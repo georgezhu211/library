@@ -21,6 +21,16 @@ class Book {
     this.pages = pages
     this.read = read
   }
+
+  toggle() {
+    if (this.read == 'Plan to Read') {
+      this.read = 'Reading'
+    } else if (this.read == 'Reading') {
+      this.read = 'Completed' 
+    } else {
+      this.read = 'Plan to Read'
+    }
+  }
 }
 // DOM module
 const DOM = (() => {
@@ -38,13 +48,19 @@ const DOM = (() => {
   bookForm.addEventListener('submit', addBook.bind(this))
   storageBtn.addEventListener('click', clearStorage)
 
+  function render() {
+    clear()
+    Library.myLibrary.forEach(book => update(book))
+  }
+
   function update(book) {
     let row = bookshelf.insertRow(-1)
     for (const property in book) {
       row.insertCell().textContent = book[property]
     }
-    // addReadSelect(row)
-    addRemoveBtn(row)
+    let options = row.insertCell()
+    addEditBtn(options)
+    addRemoveBtn(options)
   }
 
   function openForm() {
@@ -68,6 +84,13 @@ const DOM = (() => {
     closeForm()
   }
 
+  function editBook() {
+    const row = this.parentElement.parentElement
+    const index = row.rowIndex - 1;
+    Library.myLibrary[index].toggle()
+    render()
+  }
+
   function removeBook() {
     const row = this.parentElement.parentElement
     const index = row.rowIndex - 1;
@@ -75,28 +98,26 @@ const DOM = (() => {
     row.remove()
   }
 
-  // function addReadSelect(row, index) {
-  //   const select = document.createElement('select')
-  //   select.className = 'read-selector'
-  //   const option1 = document.createElement('option')
-  //   option1.textContent = 'Plan to Read'
-  //   const option2 = document.createElement('option')
-  //   option2.textContent = 'Reading'
-  //   const option3 = document.createElement('option')
-  //   option3.textContent = 'Completed'
-  //   select.appendChild(option1)
-  //   select.appendChild(option2)
-  //   select.appendChild(option3)
-  //   select.selectedIndex = index
-  //   row.insertCell().appendChild(select)
-  // }
+  function addEditBtn(row) {
+    const button = document.createElement('button')
+    button.addEventListener('click', editBook)
+    button.className = 'edit-button'
+    const span = document.createElement('span')
+    span.className = 'material-icons'
+    span.textContent = 'edit'
+    button.appendChild(span)
+    row.appendChild(button)
+  }
 
   function addRemoveBtn(row) {
     const button = document.createElement('button')
     button.addEventListener('click', removeBook)
     button.className = 'remove-button'
-    button.textContent = 'X'
-    row.insertCell().appendChild(button)
+    const span = document.createElement('span')
+    span.className = 'material-icons'
+    span.textContent = 'close'
+    button.appendChild(span)
+    row.appendChild(button)
   }
 
   function clearStorage() {
@@ -135,10 +156,18 @@ const storage = (() => {
   function access() {
     console.log('accessing local storage')
     const libraryData = JSON.parse(localStorage['myLibrary'])
-    for (const key in libraryData) {
-      const book = libraryData[key]
+    libraryData.forEach(obj => {
+      const book = unserialize(obj)
       Library.add(book)
-    }
+    })
+  }
+
+  function unserialize(obj) {
+    let title = obj.title
+    let author = obj.author
+    let pages = obj.pages
+    let read = obj.read
+    return new Book(title, author, pages, read)
   }
 
   return {

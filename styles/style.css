@@ -78,7 +78,7 @@ th:last-child {
   justify-content: center;
   align-items: center;
   font-size: 26px;
-  /* display: none; */
+  display: none;
 }
 
 form li + li {
@@ -161,7 +161,7 @@ form li + li {
   width: 170px;
 }
 
-.add-button:hover, .form-button:hover {
+.add-button:hover, .form-button:hover, .edit-button:hover {
   box-shadow: 0 0 10px #6ffa6a;
 }
 
@@ -177,19 +177,28 @@ button:active{
   transform: scale(1.25);
 }
 
-.remove-button, .read-button {
-  padding: 0 3px;
+.remove-button, .edit-button {
   border-radius: 4px;
   border: none;
   outline: none;
-  font-size: 15px;
-  margin: 0px 3px;
-  width: 20px;
-  height: 20px;
+  width: 23px;
+  height: 23px;
 }
 
 .remove-button {
   background-color: #cf1818;
+}
+
+.edit-button {
+  background-color: #6ffa6a;
+  margin-right: 8px;
+}
+
+.material-icons {
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .close-button {
