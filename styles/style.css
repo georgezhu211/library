@@ -1,10 +1,11 @@
-body, html {
+body,
+html {
   height: 100%;
   min-width: 960px;
 }
 
 .background {
-  background-image: url("../images/wanshitongslibrary.jpg");
+  background-image: url('../images/wanshitongslibrary.jpg');
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -17,7 +18,8 @@ body, html {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.header, .sub-header {
+.header,
+.sub-header {
   text-align: center;
 }
 
@@ -33,7 +35,7 @@ body, html {
 
 .table-container {
   border: 1px solid #34ff78;
-  width: 900px;
+  width: 1200px;
   height: 600px;
   margin: 0 auto;
   margin-top: 20px;
@@ -63,10 +65,7 @@ td:first-child {
   border-left: 1px solid #00cf5d;
 }
 th:first-child {
-  width: 40%;
-}
-th:last-child {
-  width: 10%;
+  width: 30%;
 }
 
 .form-popup {
@@ -134,7 +133,9 @@ form li + li {
   color: white;
 }
 
-.add-button, .form-button, .storage-button {
+.add-button,
+.form-button,
+.storage-button {
   height: 45px;
   width: 120px;
   margin: 0 auto;
@@ -161,15 +162,18 @@ form li + li {
   width: 170px;
 }
 
-.add-button:hover, .form-button:hover, .edit-button:hover {
+.add-button:hover,
+.form-button:hover,
+.edit-button:hover {
   box-shadow: 0 0 10px #6ffa6a;
 }
 
-.storage-button:hover, .remove-button:hover {
+.storage-button:hover,
+.remove-button:hover {
   box-shadow: 0 0 10px #ff5e5e;
 }
 
-button:active{
+button:active {
   transform: scale(1.05);
 }
 
@@ -177,7 +181,8 @@ button:active{
   transform: scale(1.25);
 }
 
-.remove-button, .edit-button {
+.remove-button,
+.edit-button {
   border-radius: 4px;
   border: none;
   outline: none;
